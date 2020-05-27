@@ -50,7 +50,7 @@ import java.util.Map;
 
 interface IRemoteClient {
     boolean connect(in String userId, in String token);
-    void disconnect(in boolean clearSession);
+    void disconnect(in boolean disablePush, in boolean clearSession);
     void setForeground(in int isForeground);
     void onNetworkChange();
     void setServerAddress(in String host);
@@ -68,6 +68,7 @@ interface IRemoteClient {
     oneway void registerMessageContent(in String msgContentCls);
 
     oneway void send(in Message msg, in ISendMessageCallback callback, in int expireDuration);
+    oneway void sendSavedMessage(in Message msg, in int expireDuration, in ISendMessageCallback callback);
     oneway void recall(in long messageUid, IGeneralCallback callback);
     long getServerDeltaTime();
     List<ConversationInfo> getConversationList(in int[] conversationTypes, in int[] lines);
@@ -102,7 +103,10 @@ interface IRemoteClient {
     oneway void setConversationTop(in int conversationType, in String target, in int line, in boolean top, in IGeneralCallback callback);
     void setConversationDraft(in int conversationType, in String target, in int line, in String draft);
     oneway void setConversationSilent(in int conversationType, in String target, in int line, in boolean silent,  in IGeneralCallback callback);
+    void setConversationTimestamp(in int conversationType, in String target, in int line, in long timestamp);
 
+    Map getConversationRead(in int conversationType, in String target, in int line);
+    Map getMessageDelivery(in int conversationType, in String target);
     oneway void searchUser(in String keyword, in int searchType, in int page, in ISearchUserCallback callback);
 
     boolean isMyFriend(in String userId);
@@ -164,6 +168,7 @@ interface IRemoteClient {
     GroupMember getGroupMember(in String groupId, in String memberId);
     oneway void transferGroup(in String groupId, in String newOwner, in int[] notifyLines, in MessagePayload notifyMsg, in IGeneralCallback callback);
     oneway void setGroupManager(in String groupId, in boolean isSet, in List<String> memberIds, in int[] notifyLines, in MessagePayload notifyMsg, in IGeneralCallback callback);
+    oneway void muteGroupMember(in String groupId, in boolean isSet, in List<String> memberIds, in int[] notifyLines, in MessagePayload notifyMsg, in IGeneralCallback callback);
     byte[] encodeData(in byte[] data);
     byte[] decodeData(in byte[] data);
 
@@ -180,7 +185,13 @@ interface IRemoteClient {
 
     String getImageThumbPara();
 
+    void kickoffPCClient(in String pcClientId, in IGeneralCallback callback);
+    void getApplicationId(in String applicationId, in IGeneralCallback2 callback);
+
     int getMessageCount(in Conversation conversation);
     boolean begainTransaction();
     void commitTransaction();
+
+    boolean isCommercialServer();
+    boolean isReceiptEnabled();
 }

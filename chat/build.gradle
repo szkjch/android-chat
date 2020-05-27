@@ -9,13 +9,13 @@ android {
             storePassword 'wildfirechat'
         }
     }
-    compileSdkVersion 28
+    compileSdkVersion 29
     aaptOptions.cruncherEnabled = false
     aaptOptions.useNewCruncher = false
     defaultConfig {
         applicationId "cn.wildfirechat.chat"
-        minSdkVersion 16
-        targetSdkVersion 28 //当targetversion大于23时，需要使用fileprovider
+        minSdkVersion 17
+        targetSdkVersion 29 //当targetversion大于23时，需要使用fileprovider
         versionCode 24
         versionName "0.7.0"
         multiDexEnabled true
@@ -106,7 +106,7 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.5'
 
     // ViewModel and LiveData
-    def lifecycle_version = '2.2.0-alpha05'
+    def lifecycle_version = '2.2.0'
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
 
     implementation project(':client')
@@ -128,3 +128,5 @@ dependencies {
     // moment end
 
 }
+
+apply plugin: 'com.huawei.agconnect'

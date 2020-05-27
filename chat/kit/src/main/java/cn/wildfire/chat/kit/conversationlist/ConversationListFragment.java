@@ -136,7 +136,7 @@ public class ConversationListFragment extends ProgressFragment {
             conversationListViewModel.reloadConversationList(true);
             conversationListViewModel.reloadConversationUnreadStatus();
 
-            List<PCOnlineInfo> infos = ChatManager.Instance().getPOnlineInfos();
+            List<PCOnlineInfo> infos = ChatManager.Instance().getPCOnlineInfos();
             statusNotificationViewModel.clearStatusNotificationByType(PCOnlineStatusNotification.class);
             if (infos.size() > 0) {
                 for (PCOnlineInfo info : infos) {
@@ -145,6 +145,13 @@ public class ConversationListFragment extends ProgressFragment {
                 }
             }
         });
+        List<PCOnlineInfo> pcOnlineInfos = ChatManager.Instance().getPCOnlineInfos();
+        if (pcOnlineInfos != null && !pcOnlineInfos.isEmpty()) {
+            for (PCOnlineInfo info : pcOnlineInfos) {
+                PCOnlineStatusNotification notification = new PCOnlineStatusNotification(info);
+                statusNotificationViewModel.showStatusNotification(notification);
+            }
+        }
     }
 
     private void reloadConversations() {

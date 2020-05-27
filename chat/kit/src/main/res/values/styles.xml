@@ -9,6 +9,7 @@
         <!--<item name="android:windowAnimationStyle">@style/activityAnimation</item>-->
         <!-- Customize color of navigation drawer icon and back arrow -->
         <item name="colorBackgroundFloating">@color/white</item>
+        <item name="colorAccent">@color/colorPrimary</item>
     </style>
 
     <style name="AppTheme.LightAppbar">
@@ -73,6 +74,10 @@
         <item name="kswThumbMarginLeft">-5dp</item>
         <item name="kswThumbMarginRight">-5dp</item>
         <item name="kswThumbMarginTop">-2dp</item>
+    </style>
+
+    <style name="deliveryProgress" parent="Widget.MaterialProgressBar.ProgressBar.Small">
+
     </style>
 
 </resources>

@@ -34,6 +34,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import cn.wildfire.chat.app.Config;
+import cn.wildfire.chat.app.WfcIntent;
 import cn.wildfire.chat.kit.common.AppScopeViewModel;
 import cn.wildfire.chat.kit.net.OKHttpHelper;
 import cn.wildfire.chat.kit.voip.AsyncPlayer;
@@ -154,6 +155,8 @@ public class WfcUIKit implements AVEngineKit.AVEngineCallback, OnReceiveMessageL
             e.printStackTrace();
         } catch (InvocationTargetException e) {
             e.printStackTrace();
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 
@@ -193,8 +196,8 @@ public class WfcUIKit implements AVEngineKit.AVEngineCallback, OnReceiveMessageL
     private AsyncPlayer ringPlayer;
 
     @Override
-    public void shouldStartRing(boolean isIncomming) {
-        if (isIncomming) {
+    public void shouldStartRing(boolean isIncoming) {
+        if (isIncoming) {
             Uri uri = Uri.parse("android.resource://" + application.getPackageName() + "/" + R.raw.incoming_call_ring);
             ringPlayer.play(application, uri, true, AudioManager.STREAM_RING);
         } else {
@@ -234,9 +237,9 @@ public class WfcUIKit implements AVEngineKit.AVEngineCallback, OnReceiveMessageL
 
         Conversation conversation = new Conversation(Conversation.ConversationType.Group, groupId);
         if (participants.size() >= 4) {
-            AVEngineKit.Instance().setVideoProfile(VideoProfile.VP240P, false);
-        } else if (participants.size() >= 6) {
             AVEngineKit.Instance().setVideoProfile(VideoProfile.VP120P, false);
+        } else if (participants.size() >= 6) {
+            AVEngineKit.Instance().setVideoProfile(VideoProfile.VP120P_3, false);
         }
         AVEngineKit.Instance().startCall(conversation, participants, isAudioOnly, null);
         Intent intent = new Intent(context, MultiCallActivity.class);
