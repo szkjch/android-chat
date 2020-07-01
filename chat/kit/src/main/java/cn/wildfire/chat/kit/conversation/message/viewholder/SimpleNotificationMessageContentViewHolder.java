@@ -17,7 +17,10 @@ import cn.wildfirechat.message.notification.ChangeGroupNameNotificationContent;
 import cn.wildfirechat.message.notification.ChangeGroupPortraitNotificationContent;
 import cn.wildfirechat.message.notification.CreateGroupNotificationContent;
 import cn.wildfirechat.message.notification.DismissGroupNotificationContent;
+import cn.wildfirechat.message.notification.FriendAddedMessageContent;
+import cn.wildfirechat.message.notification.FriendGreetingMessageContent;
 import cn.wildfirechat.message.notification.GroupJoinTypeNotificationContent;
+import cn.wildfirechat.message.notification.GroupMuteMemberNotificationContent;
 import cn.wildfirechat.message.notification.GroupMuteNotificationContent;
 import cn.wildfirechat.message.notification.GroupPrivateChatNotificationContent;
 import cn.wildfirechat.message.notification.GroupSetManagerNotificationContent;
@@ -41,11 +44,14 @@ import cn.wildfirechat.message.notification.TransferGroupOwnerNotificationConten
         QuitGroupNotificationContent.class,
         TransferGroupOwnerNotificationContent.class,
         TipNotificationContent.class,
+        FriendAddedMessageContent.class,
+        FriendGreetingMessageContent.class,
         RecallMessageContent.class,
         GroupMuteNotificationContent.class,
         GroupPrivateChatNotificationContent.class,
         GroupJoinTypeNotificationContent.class,
         GroupSetManagerNotificationContent.class,
+        GroupMuteMemberNotificationContent.class,
         AddParticipantsMessageContent.class
         // TODO add more
 
